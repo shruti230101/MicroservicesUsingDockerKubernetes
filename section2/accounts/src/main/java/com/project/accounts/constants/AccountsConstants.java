@@ -12,4 +12,10 @@ public class AccountsConstants {
     public static final String MESSAGE_200 = "Request processed successfully";
     public static final String STATUS_500 = "500";
     public static final String MESSAGE_500 = "An error occurred. Please try again later.";
+
+    public static final String ACCOUNT_NUMBER_NOT_EMPTY = "AccountNumber can not be a null or empty";
+    public static final String ACCOUNT_TYPE_NOT_EMPTY = "AccountType can not be a null or empty";
+    public static final String ACCOUNT_BRANCH_ADDRESS_NOT_EMPTY = "Account BranchAddress cannot be null or empty";
+    public static final String ACCOUNT_NUMBER_PATTERN = "(^$|[0-9]{10})";
+    public static final String ACCOUNT_NUMBER_LENGTH = "AccountNumber must be 10 digits";
 }

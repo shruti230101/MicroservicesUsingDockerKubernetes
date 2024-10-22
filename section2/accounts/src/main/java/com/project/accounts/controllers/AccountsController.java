@@ -1,24 +1,29 @@
 package com.project.accounts.controllers;
 
 import com.project.accounts.constants.AccountsConstants;
+import com.project.accounts.constants.CustomerConstants;
 import com.project.accounts.dtos.CustomerDTO;
 import com.project.accounts.dtos.ResponseDTO;
 import com.project.accounts.services.IAccountService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
+@Validated
 public class AccountsController {
 
     private IAccountService accountService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> createAccount(@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<ResponseDTO> createAccount(@Valid @RequestBody CustomerDTO customerDTO) {
         accountService.createAccount(customerDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -26,7 +31,9 @@ public class AccountsController {
     }
 
     @GetMapping("/fetch")
-    public ResponseEntity<CustomerDTO> fetchAccountDetails(@RequestParam String mobileNumber) {
+    public ResponseEntity<CustomerDTO> fetchAccountDetails(@RequestParam
+                                                               @Pattern(regexp = CustomerConstants.CUSTOMER_MOBILE_NUMBER_PATTERN, message = CustomerConstants.CUSTOMER_MOBILE_NUMBER_LENGTH)
+                                                               String mobileNumber) {
         CustomerDTO customerDTO = accountService.fetchAccount(mobileNumber);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -34,7 +41,7 @@ public class AccountsController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ResponseDTO> updateAccountDetails(@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<ResponseDTO> updateAccountDetails(@Valid @RequestBody CustomerDTO customerDTO) {
         boolean isUpdated = accountService.updateAccount(customerDTO);
         if(isUpdated) {
             return ResponseEntity
@@ -47,7 +54,9 @@ public class AccountsController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<ResponseDTO> deleteAccountDetails(@RequestParam String mobileNumber) {
+    public ResponseEntity<ResponseDTO> deleteAccountDetails(@RequestParam
+                                                            @Pattern(regexp = CustomerConstants.CUSTOMER_MOBILE_NUMBER_PATTERN, message = CustomerConstants.CUSTOMER_MOBILE_NUMBER_LENGTH)
+                                                                String mobileNumber) {
         boolean isDeleted = accountService.deleteAccount(mobileNumber);
         if(isDeleted) {
             return ResponseEntity
