@@ -26,7 +26,8 @@ import org.springframework.web.bind.annotation.*;
         description = SwaggerConstants.ACCOUNTS_MS_TAG_DESCRIPTION
 )
 @RestController
-@RequestMapping(path = AccountsConstants.BASE_PATH, produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = AccountsConstants.BASE_PATH,
+        produces = {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
 @Validated
 public class AccountsController {
@@ -75,7 +76,8 @@ public class AccountsController {
     })
     @GetMapping(AccountsConstants.FETCH_ACCOUNT)
     public ResponseEntity<CustomerDTO> fetchAccountDetails(@RequestParam
-                                                               @Pattern(regexp = CustomerConstants.CUSTOMER_MOBILE_NUMBER_PATTERN, message = CustomerConstants.CUSTOMER_MOBILE_NUMBER_LENGTH)
+                                                               @Pattern(regexp = CustomerConstants.CUSTOMER_MOBILE_NUMBER_PATTERN,
+                                                                       message = CustomerConstants.CUSTOMER_MOBILE_NUMBER_LENGTH)
                                                                String mobileNumber) {
         CustomerDTO customerDTO = accountService.fetchAccount(mobileNumber);
         return ResponseEntity
@@ -135,7 +137,8 @@ public class AccountsController {
     })
     @DeleteMapping(AccountsConstants.DELETE_ACCOUNT)
     public ResponseEntity<ResponseDTO> deleteAccountDetails(@RequestParam
-                                                            @Pattern(regexp = CustomerConstants.CUSTOMER_MOBILE_NUMBER_PATTERN, message = CustomerConstants.CUSTOMER_MOBILE_NUMBER_LENGTH)
+                                                            @Pattern(regexp = CustomerConstants.CUSTOMER_MOBILE_NUMBER_PATTERN,
+                                                                    message = CustomerConstants.CUSTOMER_MOBILE_NUMBER_LENGTH)
                                                                 String mobileNumber) {
         boolean isDeleted = accountService.deleteAccount(mobileNumber);
         if(isDeleted) {
