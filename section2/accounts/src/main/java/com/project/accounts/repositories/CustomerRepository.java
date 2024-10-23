@@ -1,6 +1,5 @@
 package com.project.accounts.repositories;
 
-import com.project.accounts.dtos.CustomerDTO;
 import com.project.accounts.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
