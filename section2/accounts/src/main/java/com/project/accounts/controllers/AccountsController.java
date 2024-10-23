@@ -22,8 +22,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "CRUD APIs for Accounts microservice in Bank",
-    description = "CRUD APIs for Accounts in Bank to CREATE, FETCH, UPDATE and DELETE the details"
+@Tag(name = SwaggerConstants.ACCOUNTS_MS_TAG_NAME,
+        description = SwaggerConstants.ACCOUNTS_MS_TAG_DESCRIPTION
 )
 @RestController
 @RequestMapping(path = AccountsConstants.BASE_PATH, produces = {MediaType.APPLICATION_JSON_VALUE})

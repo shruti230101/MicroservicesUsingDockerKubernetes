@@ -2,6 +2,9 @@ package com.project.accounts.constants;
 
 public class SwaggerConstants {
 
+    public static final String ACCOUNTS_MS_TAG_NAME = "CRUD APIs for Accounts microservice in Bank";
+    public static final String ACCOUNTS_MS_TAG_DESCRIPTION = "CRUD APIs for Accounts in Bank to CREATE, FETCH, UPDATE and DELETE the details";
+
     public static final String ACCOUNTS_MS_TITLE = "Accounts microservice REST API documentation";
     public static final String ACCOUNTS_MS_DESCRIPTION = "Bank Accounts microservice REST API documentation";
     public static final String ACCOUNTS_MS_VERSION = "v1";
