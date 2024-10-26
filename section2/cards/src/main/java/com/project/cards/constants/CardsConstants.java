@@ -30,7 +30,7 @@ public class CardsConstants {
 
     public static final String CARDS_BASIC_URL = "/api";
     public static final String CREATE_CARD_URL = "/create";
-    public static final String FETCH_CARD_URL = "/get";
+    public static final String FETCH_CARD_URL = "/fetch";
     public static final String UPDATE_CARD_URL = "/update";
     public static final String DELETE_CARD_URL = "/delete";
 
