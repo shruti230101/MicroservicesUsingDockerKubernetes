@@ -26,6 +26,8 @@ public class SwaggerConstants {
     public static final String BUILD_DESCRIPTION = "Get build information that is being deployed into accounts microservice";
     public static final String JAVA_VERSION_SUMMARY = "Get Java version";
     public static final String JAVA_VERSION_DESCRIPTION = "Get Java version details that is installed in the accounts microservices";
+    public static final String CONTACT_INFO_SUMMARY = "Get contact info";
+    public static final String CONTACT_INFO_DESCRIPTION = "Contact info details that can be reached out in case of any issues";
 
     public static final String CUSTOMER_SCHEMA_NAME = "Customer";
     public static final String CUSTOMER_SCHEMA_DESCRIPTION = "Schema to hold Customer and Account information";

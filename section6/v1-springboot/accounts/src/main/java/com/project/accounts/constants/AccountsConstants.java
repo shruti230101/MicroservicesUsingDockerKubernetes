@@ -11,6 +11,7 @@ public class AccountsConstants {
     public static final String DELETE_ACCOUNT = "/delete";
     public static final String BUILD_INFO = "/build-info";
     public static final String JAVA_VERSION = "/java-version";
+    public static final String CONTACT_INFO = "/contact-info";
 
     public static final String SAVINGS = "Savings";
     public static final String ADDRESS = "123 Main Street, New York";
@@ -29,4 +30,7 @@ public class AccountsConstants {
     public static final String ACCOUNT_BRANCH_ADDRESS_NOT_EMPTY = "Account BranchAddress cannot be null or empty";
     public static final String ACCOUNT_NUMBER_PATTERN = "(^$|[0-9]{10})";
     public static final String ACCOUNT_NUMBER_LENGTH = "AccountNumber must be 10 digits";
+    public static final String ACCOUNT_AUDITOR_AWARE_REFERENCE = "auditAwareImpl";
+    public static final String ACCOUNT_VERSION_PROPERTY = "${build.version}";
+    public static final String ACCOUNT_CONFIG_PREFIX = "accounts";
 }

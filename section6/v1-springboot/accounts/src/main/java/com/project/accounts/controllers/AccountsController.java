@@ -3,6 +3,7 @@ package com.project.accounts.controllers;
 import com.project.accounts.constants.AccountsConstants;
 import com.project.accounts.constants.CustomerConstants;
 import com.project.accounts.constants.SwaggerConstants;
+import com.project.accounts.dtos.AccountsContactInfoDTO;
 import com.project.accounts.dtos.CustomerDTO;
 import com.project.accounts.dtos.ErrorResponseDTO;
 import com.project.accounts.dtos.ResponseDTO;
@@ -36,11 +37,14 @@ public class AccountsController {
     @Autowired
     private IAccountService accountService;
 
-    @Value("${build.version}")
+    @Value(AccountsConstants.ACCOUNT_VERSION_PROPERTY)
     private String buildVersion;
 
     @Autowired
     private Environment environment;
+
+    @Autowired
+    private AccountsContactInfoDTO accountsContactInfoDTO;
 
     @Operation(summary = SwaggerConstants.CREATE_ACCOUNT_SUMMARY,
                 description = SwaggerConstants.CREATE_ACCOUNT_DESCRIPTION
@@ -203,5 +207,28 @@ public class AccountsController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(environment.getProperty(AccountsConstants.JAVA_VERSION_PROPERTY));
+    }
+
+    @Operation(summary = SwaggerConstants.CONTACT_INFO_SUMMARY,
+            description = SwaggerConstants.CONTACT_INFO_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(AccountsConstants.CONTACT_INFO)
+    public ResponseEntity<AccountsContactInfoDTO> getContactInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(accountsContactInfoDTO);
     }
 }
