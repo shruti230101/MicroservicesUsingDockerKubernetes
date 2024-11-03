@@ -17,6 +17,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,9 @@ public class AccountsController {
 
     @Value("${build.version}")
     private String buildVersion;
+
+    @Autowired
+    private Environment environment;
 
     @Operation(summary = SwaggerConstants.CREATE_ACCOUNT_SUMMARY,
                 description = SwaggerConstants.CREATE_ACCOUNT_DESCRIPTION
@@ -176,5 +180,28 @@ public class AccountsController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(buildVersion);
+    }
+
+    @Operation(summary = SwaggerConstants.JAVA_VERSION_SUMMARY,
+            description = SwaggerConstants.JAVA_VERSION_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(AccountsConstants.JAVA_VERSION)
+    public ResponseEntity<String> getJavaVersion() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(environment.getProperty(AccountsConstants.JAVA_VERSION_PROPERTY));
     }
 }
