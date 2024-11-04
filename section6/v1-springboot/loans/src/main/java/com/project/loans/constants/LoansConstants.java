@@ -21,6 +21,9 @@ public class LoansConstants {
     public static final String FETCH_LOAN_URI = "/fetch";
     public static final String UPDATE_LOAN_URI = "/update";
     public static final String DELETE_LOAN_URI = "/delete";
+    public static final String BUILD_INFO = "/build-info";
+    public static final String JAVA_VERSION = "/java-version";
+    public static final String CONTACT_INFO = "/contact-info";
 
     public static final String RESOURCE_NOT_FOUND_EXCEPTION = "%s not found with the given input data %s : '%s'";
     public static final String LOAN_ALREADY_EXISTS_EXCEPTION = "Loan already registered with given mobileNumber ";
@@ -35,4 +38,7 @@ public class LoansConstants {
     public static final String LOAN_AUDIT_COMPONENT_NAME = "auditAwareImpl";
     public static final String LOANS_AUDIT = "Loans MS";
     public static final String LOANS_AUDITOR_AWARE_REFERENCE = "auditAwareImpl";
+    public static final String ACCOUNT_VERSION_PROPERTY = "${build.version}";
+    public static final String JAVA_VERSION_PROPERTY = "JAVA_HOME";
+    public static final String LOAN_CONFIG_PREFIX = "loans";
 }

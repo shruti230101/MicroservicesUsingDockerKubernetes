@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Bank accounts related Prod APIs "
+  contactDetails:
+    name: "Harsh Gupta - Product Owner"
+    email: "harshgupta@projectbanks.com"
+  onCallSupport:
+    - (777) 555-1234
+    - (777) 523-1345

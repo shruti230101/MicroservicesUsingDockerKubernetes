@@ -2,6 +2,7 @@ package com.project.cards.controllers;
 
 import com.project.cards.constants.CardsConstants;
 import com.project.cards.constants.SwaggerConstants;
+import com.project.cards.dtos.CardsContactInfoDTO;
 import com.project.cards.dtos.CardsDTO;
 import com.project.cards.dtos.ErrorResponseDTO;
 import com.project.cards.dtos.ResponseDTO;
@@ -14,7 +15,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +32,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = CardsConstants.CARDS_BASIC_URL,
         produces = {MediaType.APPLICATION_JSON_VALUE}
 )
-@AllArgsConstructor
 @Validated
 public class CardsController {
 
+    @Autowired
     private ICardsService iCardsService;
+
+    @Value(CardsConstants.ACCOUNT_VERSION_PROPERTY)
+    private String buildVersion;
+
+    @Autowired
+    private Environment environment;
+
+    @Autowired
+    private CardsContactInfoDTO accountsContactInfoDTO;
 
     @Operation(
             summary = SwaggerConstants.CREATE_CARD_API_SUMMARY,
@@ -158,5 +170,74 @@ public class CardsController {
         return ResponseEntity
                 .status(HttpStatus.EXPECTATION_FAILED)
                 .body(new ResponseDTO(CardsConstants.STATUS_417, CardsConstants.MESSAGE_417));
+    }
+
+    @Operation(summary = SwaggerConstants.BUILD_INFO_SUMMARY,
+            description = SwaggerConstants.BUILD_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(CardsConstants.BUILD_INFO)
+    public ResponseEntity<String> getBuildInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(buildVersion);
+    }
+
+    @Operation(summary = SwaggerConstants.JAVA_VERSION_SUMMARY,
+            description = SwaggerConstants.JAVA_VERSION_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(CardsConstants.JAVA_VERSION)
+    public ResponseEntity<String> getJavaVersion() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(environment.getProperty(CardsConstants.JAVA_VERSION_PROPERTY));
+    }
+
+    @Operation(summary = SwaggerConstants.CONTACT_INFO_SUMMARY,
+            description = SwaggerConstants.CONTACT_INFO_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(CardsConstants.CONTACT_INFO)
+    public ResponseEntity<CardsContactInfoDTO> getContactInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(accountsContactInfoDTO);
     }
 }

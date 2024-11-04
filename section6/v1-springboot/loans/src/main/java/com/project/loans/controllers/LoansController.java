@@ -3,6 +3,7 @@ package com.project.loans.controllers;
 import com.project.loans.constants.LoansConstants;
 import com.project.loans.constants.SwaggerConstants;
 import com.project.loans.dtos.ErrorResponseDTO;
+import com.project.loans.dtos.LoansContactInfoDTO;
 import com.project.loans.dtos.LoansDTO;
 import com.project.loans.dtos.ResponseDTO;
 import com.project.loans.services.ILoansService;
@@ -14,7 +15,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +30,20 @@ import org.springframework.web.bind.annotation.*;
 )
 @RestController
 @RequestMapping(path = LoansConstants.LOAN_BASE_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-@AllArgsConstructor
 @Validated
 public class LoansController {
 
+    @Autowired
     private ILoansService loansService;
+
+    @Value(LoansConstants.ACCOUNT_VERSION_PROPERTY)
+    private String buildVersion;
+
+    @Autowired
+    private Environment environment;
+
+    @Autowired
+    private LoansContactInfoDTO accountsContactInfoDTO;
 
     @Operation(
             summary = SwaggerConstants.CREATE_LOAN_SUMMARY,
@@ -156,5 +168,74 @@ public class LoansController {
         return ResponseEntity
                 .status(HttpStatus.EXPECTATION_FAILED)
                 .body(new ResponseDTO(LoansConstants.STATUS_417, LoansConstants.MESSAGE_417_DELETE));
+    }
+
+    @Operation(summary = SwaggerConstants.BUILD_INFO_SUMMARY,
+            description = SwaggerConstants.BUILD_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(LoansConstants.BUILD_INFO)
+    public ResponseEntity<String> getBuildInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(buildVersion);
+    }
+
+    @Operation(summary = SwaggerConstants.JAVA_VERSION_SUMMARY,
+            description = SwaggerConstants.JAVA_VERSION_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(LoansConstants.JAVA_VERSION)
+    public ResponseEntity<String> getJavaVersion() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(environment.getProperty(LoansConstants.JAVA_VERSION_PROPERTY));
+    }
+
+    @Operation(summary = SwaggerConstants.CONTACT_INFO_SUMMARY,
+            description = SwaggerConstants.CONTACT_INFO_DESCRIPTION
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_200,
+                    description = SwaggerConstants.STATUS_200_MESSAGE
+            ),
+            @ApiResponse(
+                    responseCode = SwaggerConstants.STATUS_500,
+                    description = SwaggerConstants.STATUS_500_MESSAGE,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDTO.class)
+                    )
+            )
+    })
+    @GetMapping(LoansConstants.CONTACT_INFO)
+    public ResponseEntity<LoansContactInfoDTO> getContactInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(accountsContactInfoDTO);
     }
 }

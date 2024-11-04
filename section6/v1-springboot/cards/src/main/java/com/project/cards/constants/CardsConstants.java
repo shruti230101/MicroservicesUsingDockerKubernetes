@@ -33,7 +33,13 @@ public class CardsConstants {
     public static final String FETCH_CARD_URL = "/fetch";
     public static final String UPDATE_CARD_URL = "/update";
     public static final String DELETE_CARD_URL = "/delete";
+    public static final String BUILD_INFO = "/build-info";
+    public static final String JAVA_VERSION = "/java-version";
+    public static final String CONTACT_INFO = "/contact-info";
 
     public static final String CARDS_MOBILE_NUMBER_REGEX = "(^$|[0-9]{10})";
     public static final String CARDS_MOBILE_NUMBER_LENGTH = "Mobile Number must be 10 digits";
+    public static final String ACCOUNT_VERSION_PROPERTY = "${build.version}";
+    public static final String CARD_CONFIG_PREFIX = "cards";
+    public static final String JAVA_VERSION_PROPERTY = "JAVA_HOME";
 }

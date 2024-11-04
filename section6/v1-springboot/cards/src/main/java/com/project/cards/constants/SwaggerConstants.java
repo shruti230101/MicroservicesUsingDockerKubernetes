@@ -50,6 +50,12 @@ public class SwaggerConstants {
     public static final String UPDATE_CARD_API_DESCRIPTION = "REST API to update card details based on a card number";
     public static final String DELETE_CARD_API_SUMMARY = "Delete Card Details REST API";
     public static final String DELETE_CARD_API_DESCRIPTION = "REST API to delete Card details based on a mobile number";
+    public static final String BUILD_INFO_SUMMARY = "Get build information";
+    public static final String BUILD_DESCRIPTION = "Get build information that is being deployed into cards microservice";
+    public static final String JAVA_VERSION_SUMMARY = "Get Java version";
+    public static final String JAVA_VERSION_DESCRIPTION = "Get Java version details that is installed in the cards microservices";
+    public static final String CONTACT_INFO_SUMMARY = "Get contact info";
+    public static final String CONTACT_INFO_DESCRIPTION = "Contact info details that can be reached out in case of any issues";
 
     public static final String STATUS_200 = "200";
     public static final String STATUS_200_MESSAGE = "HTTP Status OK";

@@ -56,4 +56,10 @@ public class SwaggerConstants {
     public static final String UPDATE_LOAN_DESCRIPTION = "REST API to update loan details based on a loan number";
     public static final String DELETE_LOAN_SUMMARY = "Delete Loan REST API";
     public static final String DELETE_LOAN_DESCRIPTION = "REST API to delete loan details based on a mobile number";
+    public static final String BUILD_INFO_SUMMARY = "Get build info";
+    public static final String BUILD_DESCRIPTION = "Get build information that is being deployed into loans microservice";
+    public static final String JAVA_VERSION_SUMMARY = "Get Java version";
+    public static final String JAVA_VERSION_DESCRIPTION = "Get Java version details that is installed in the loans microservices";
+    public static final String CONTACT_INFO_SUMMARY = "Get contact info";
+    public static final String CONTACT_INFO_DESCRIPTION = "Contact info details that can be reached out in case of any issues";
 }
