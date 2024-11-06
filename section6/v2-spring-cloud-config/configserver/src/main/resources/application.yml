@@ -4,10 +4,19 @@ spring:
   application:
     name: configserver
   profiles:
-    active: native
+#    active: native
+    active: git
   cloud:
     config:
       server:
-        native:
+#        native:
 #          search-locations: "classpath:/config"
-          search-locations: "file:///Users//shruti_agarwal1//Documents//config"
+#          search-locations: "file:///Users//shruti_agarwal1//Documents//config"
+          git:
+            uri: ${CONFIG_URI}
+            default-label: main
+            timeout: 5
+            clone-on-start: true
+            force-pull: true
+            username: ${GIT_USERNAME}
+            password: ${GIT_PASSWORD}
