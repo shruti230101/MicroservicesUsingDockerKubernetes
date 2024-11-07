@@ -20,3 +20,8 @@ spring:
             force-pull: true
             username: ${GIT_USERNAME}
             password: ${GIT_PASSWORD}
+
+encrypt:
+  key: "/+FkKhrGDnEt5MehYdyZYW9rT6smd1IBashxf4HxhxQ="
+decrypt:
+  enabled: true
