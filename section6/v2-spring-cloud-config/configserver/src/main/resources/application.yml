@@ -1,5 +1,6 @@
 server:
   port: 8071
+
 spring:
   application:
     name: configserver
@@ -20,8 +21,20 @@ spring:
             force-pull: true
             username: ${GIT_USERNAME}
             password: ${GIT_PASSWORD}
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 encrypt:
   key: "/+FkKhrGDnEt5MehYdyZYW9rT6smd1IBashxf4HxhxQ="
+
 decrypt:
   enabled: true
