@@ -1,6 +1,7 @@
 services:
   network-deploy-service:
-    networks: projectbanks
+    networks:
+    - projectbanks
 
   microservice-base-config:
     extends:
