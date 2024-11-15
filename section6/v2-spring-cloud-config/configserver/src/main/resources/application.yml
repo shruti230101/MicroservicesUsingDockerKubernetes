@@ -15,12 +15,13 @@ spring:
 #          search-locations: "file:///Users//shruti_agarwal1//Documents//config"
           git:
             uri: ${CONFIG_URI}
+            username: ${GIT_USERNAME}
+            password: ${GIT_PASSWORD}
             default-label: main
             timeout: 5
             clone-on-start: true
             force-pull: true
-            username: ${GIT_USERNAME}
-            password: ${GIT_PASSWORD}
+
   rabbitmq:
     host: "localhost"
     port: 5672
