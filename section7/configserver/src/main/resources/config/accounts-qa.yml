@@ -1,0 +1,11 @@
+build:
+  version: "2.0"
+
+accounts:
+  message: "Welcome to Bank accounts related QA APIs "
+  contactDetails:
+    name: "Anant Gupta - QA Lead"
+    email: "anantgupta@projectbanks.com"
+  onCallSupport:
+    - (666) 555-1234
+    - (666) 523-1345
