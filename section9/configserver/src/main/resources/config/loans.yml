@@ -1,0 +1,16 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: loans
+build:
+  version: "3.0"
+
+loans:
+  message: "Welcome to Bank loans related local APIs "
+  contactDetails:
+    name: "Shruti agarwal - Developer"
+    email: "shrutiagarwal@projectbanks.com"
+  onCallSupport:
+      - (452) 456-2176
+      - (546) 764-8934
