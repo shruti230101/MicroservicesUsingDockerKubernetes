@@ -50,4 +50,4 @@ Docker Commands used:
 - "docker run -p 6379:6379 --name eazyredis -d redis"	To create a Redis Container
 
 Apache Benchmark command used: 
-"ab -n 10 -c 2 -v 3 http://localhost:8072/eazybank/cards/api/contact-info"	To perform load testing on API by sending 10 requests
+- "ab -n 10 -c 2 -v 3 http://localhost:8072/eazybank/cards/api/contact-info"	To perform load testing on API by sending 10 requests
