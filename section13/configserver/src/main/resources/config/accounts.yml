@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: accounts
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to Bank accounts related local APIs "
+  contactDetails:
+    name: "Shruti Agarwal - Developer"
+    email: "shrutiagarwal@projectbanks.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 523-1345
