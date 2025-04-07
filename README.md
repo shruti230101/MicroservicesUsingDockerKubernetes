@@ -11,10 +11,6 @@ Topics covered:
 - Observability and monitoring of microservices
 - Microservices Security
 
-Pre-requisites:
-- Good understanding on Java and Spring concepts
-- Basic understanding on SpringBoot & REST services is a bonus but not mandatory
-
 Maven Commands used:
 - "mvn clean install -Dmaven.test.skip=true" ---> To generate a jar inside target folder
 - "mvn spring-boot:run"	---> To start a springboot maven project
